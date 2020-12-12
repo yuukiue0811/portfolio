@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<form action="" method="POST">{% csrf_token %}
+
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        <table border="1">
+            <thead>
+                <tr valign="top">
+                    <th width="100" height="50">テーブル番号</th>
+                    <th width="100" height="50">ドリンク確認</th>
+                    <th width="100" height="50">TAX確認</th>
+                    <th width="100" height="50">セット料金</th>
+                    <th width="100" height="50">客数</th>
+                    <th width="100" height="50">ドリンク</th>
+                    <th width="100" height="50">指名料</th>
+                    <th width="100" height="50">シャンパン料金</th>
+                    <th width="100" height="50">消費税</th>
+                    <th width="100" height="50">お会計</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr valign="top">
+                    <td width="100" height="50"> {{ object.tablenumber }}</td>
+                    <td width="100" height="50">{{ object.get_girlsdrink_confirmation_display }}</td>
+                    <td width="100" height="50">{{ object.get_tax_confirmation_display}}</td>
+                    <td width="100" height="50">{{ object.tablecharge }}</td>
+                    <td width="100" height="50">{{ object.custermer }}</td>
+                    <td width="100" height="50">1000 × {{object.girlsdrink_count }}</td>
+                    <td width="100" height="50">{{ object.staff_reservation_fee }}</td>
+                    <td width="130" height="50">{{ object.champagne_fee }}</td>
+                    <td width="100" height="50">{{ object.tax_total }}</td>
+                    <td width="100" height="50">{{ object.bill }}</td>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+    <h3>上記の内容を削除しますか？</h3>
+    <input type="submit" value="dalete">
+</form>
+</div>
+{% endblock content %}
+    

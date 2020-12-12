@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %} 
+<div class="container">
+<form method="get" action="output.html" oninput="result.value = Number(a.value) - Number(b.value) - Number(c.value) - Number(d.value);">
+
+    <p>売上合計 :<input type="number" name="a" value="0"></p> 
+    <p>ボーイの給料合計 :<input type="number" name="b" value="0"></p> 
+    <p>キャストの給料合計 :<input type="number" name="c" value="0"></p>
+    <p>買い物代などの費用合計 :<input type="number" name="d" value="0"></p>
+    
+    
+    <p>利益：<output name="result">0</output></p>
+    
+    <p><input type="reset" value="リセット"></p>
+    <h3>それぞれの項目を入力してください</h3>
+</form>
+</div>
+{% endblock content %}
+    
+    
+    
+   
+
+    

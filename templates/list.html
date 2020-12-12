@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    {% for item in obj %}
+    {% if forloop.last %}
+        <p>現在の売上です →{{ item.sales_total }}</p><br>
+    {% endif %}
+    {% endfor %}
+    {% for item in model %} 
+    <div class="alert alert-success" role="alert">
+        <p>テーブル番号 : {{ item.tablenumber }}</p>
+        <p>お会計 : <a href="{% url 'bill' item.pk %}">{{ item.bill }}</a></p>
+        <p>消費税 : <a href="{% url 'tax' item.pk %}">{{ item.tax_total }}</a></p>
+        <p>投稿時間 : {{ item.date }}</p>
+        <a href="{% url 'detail' item.pk %}" class="btn btn-primary" role="button" aria-pressed="true">詳細画面へ</a>
+        <a href="{% url 'delete' item.pk %}" class="btn btn-success" role="button" aria-pressed="true">削除画面へ</a>
+        <a href="{% url 'update' item.pk %}" class="btn btn-info" role="button" aria-pressed="true">編集画面へ</a>
+    </div>
+    {% endfor %}
+{% endblock content %}
+</div>

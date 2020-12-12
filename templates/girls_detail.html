@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+    
+
+{% block content %}
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        <table border="1">
+            <thead>
+                <tr valign="top">
+                    <th width="100" height="50">名前</th>
+                    <th width="100" height="50">勤務時間</th>
+                    <th width="100" height="50">時給</th>
+                    <th width="100" height="50">ドリンクバック(別)</th>
+                    <th width="100" height="50">ドリンクバックの杯数(別)</th>
+                    <th width="100" height="50">ドリンクバック(込み)</th>
+                    <th width="100" height="50">ドリンクバックの杯数(込み)</th>
+                    <th width="100" height="50">指名料のバック</th>
+                    <th width="100" height="50">シャンパンバック</th>
+                    <th width="100" height="50">給料</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr valign="top">
+                    <td width="100" height="50"> {{ object.name }}</td>
+                    <td width="100" height="50">{{ object.hour }}</td>
+                    <td width="100" height="50">{{ object.wage }}</td>
+                    <td width="100" height="50">{{object.drinkbag }}</td>
+                    <td width="100" height="50">{{ object.drinkbag_count }}</td>
+                    <td width="100" height="50">{{ object.drinkbag_in }}</td>
+                    <td width="100" height="50">{{ object.drinkbagin_count }}</td>
+                    <td width="100" height="50">{{ object.bag }}</td>
+                    <td width="100" height="50">{{ object.champagne_bag }}</td>
+                    <td width="100" height="50">{{ object.salary }}</td>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+</div>
+{% endblock content %}

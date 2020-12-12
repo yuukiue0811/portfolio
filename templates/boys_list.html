@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    {% for item in obj %}
+    {% if forloop.last %}
+       <p>ボーイの給料合計 → {{ item.salary_total }}</p><br>
+    {% endif %}
+    {% endfor %}
+    {% for item in model %} 
+    <div class="alert alert-success" role="alert">
+        <p>名前 : {{ item.name }}</p>
+        <p>給料 : <a href="{% url 'boys_salary' item.pk %}">{{ item.salary }}</a></p>
+        <a href="{% url 'boys_detail' item.pk %}" class="btn btn-primary" role="button" aria-pressed="true">詳細画面へ</a>
+        <a href="{% url 'boys_delete' item.pk %}" class="btn btn-success" role="button" aria-pressed="true">削除画面へ</a>
+        <a href="{% url 'boys_update' item.pk %}" class="btn btn-info" role="button" aria-pressed="true">編集画面へ</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

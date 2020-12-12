@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+        {{form.as_p}}
+        <p>* 入力する必要がない項目の場合０と入力してください。例）手当て、月末手当て、固定給など</p>
+        <p>* 固定給の人は時給や勤務時間などは入力せず、固定給の箇所だけ入力ください。</p>
+        <h4>上記の内容でよろしいですか？</h4>
+        <input type="submit" value="作成する">
+    </form>
+{% else %}
+ログインしてください
+<a href="{% url 'login'  %}"></a>
+</div>
+{% endif %}
+    
+{% endblock content %}

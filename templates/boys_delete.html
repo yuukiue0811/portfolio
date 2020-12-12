@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+    
+
+{% block content %}
+<form action="" method="POST">{% csrf_token %}
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        <table border="1">
+            <thead>
+                <tr valign="top">
+                    <th width="100" height="50">名前</th>
+                    <th width="100" height="50">勤務時間</th>
+                    <th width="100" height="50">時給</th>
+                    <th width="100" height="50">固定給</th>
+                    <th width="100" height="50">手当て</th>
+                    <th width="100" height="50">月末手当て</th>
+                    <th width="100" height="50">給料</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr valign="top">
+                    <td width="100" height="50"> {{ object.name }}</td>
+                    <td width="100" height="50">{{ object.hour }}</td>
+                    <td width="100" height="50">{{ object.wage }}</td>
+                    <td width="100" height="50">{{object.fixedsalary }}</td>
+                    <td width="100" height="50">{{ object.allowance }}</td>
+                    <td width="100" height="50">{{ object.mouth_allowance }}</td>
+                    <td width="100" height="50">{{ object.salary }}</td>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+    <h3>上記の内容を削除しますか？</h3>
+    <input type="submit" value="dalete">
+</form>
+</div>
+{% endblock content %}

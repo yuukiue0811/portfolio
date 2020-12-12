@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+    
+
+{% block content %}
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        <table border="1">
+            <thead>
+                <tr valign="top">
+                    <th width="100" height="50">買い物代</th>
+                    <th width="100" height="50">他にかかった費用</th>
+                    <th width="100" height="50">臨時収入</th>
+                    <th width="100" height="50">出費総額</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr valign="top">
+                    <td width="100" height="50"> {{ object.shopping_costs }}</td>
+                    <td width="100" height="50">{{ object.others }}</td>
+                    <td width="100" height="50">{{ object.profit}}</td>
+                    <td width="100" height="50">{{object.shopping_total }}</td>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+</div>
+{% endblock content %}
