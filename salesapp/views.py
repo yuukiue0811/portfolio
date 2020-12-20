@@ -23,36 +23,39 @@ def detailfunc(request, pk):
     object = SalesModel.objects.get(pk=pk)
     return render(request, 'detail.html', {'object' : object })
 
-
+d_price = 1000
+d1_price = 0
+tax = 1.1
 def billfunc(request, pk):
     object = SalesModel.objects.get(pk=pk)
     if object.girlsdrink_confirmation == 'yes' and object.tax_confirmation == 'yes':
-        object.bill = (object.tablecharge * object.custermer + object.girlsdrink_count * 1000 
-        + object.staff_reservation_fee + object.champagne_fee + object.singlecharge) * 1.1
+        object.bill = (object.tablecharge * object.custermer + object.girlsdrink_count * d_price
+        + object.staff_reservation_fee + object.champagne_fee + object.singlecharge) * tax
         object.save()
         return redirect('list')
     elif object.girlsdrink_confirmation == 'yes' and object.tax_confirmation == 'no':
-        object.bill = (object.tablecharge * object.custermer + object.girlsdrink_count * 1000 
+        object.bill = (object.tablecharge * object.custermer + object.girlsdrink_count * d_price 
         + object.staff_reservation_fee + object.champagne_fee + object.singlecharge)
         object.save()
         return redirect('list')
     elif object.girlsdrink_confirmation == 'no' and object.tax_confirmation == 'yes':
-        object.bill = (object.tablecharge * object.custermer + object.girlsdrink_count * 0 
-        + object.staff_reservation_fee + object.champagne_fee + object.singlecharge) * 1.1
+        object.bill = (object.tablecharge * object.custermer + object.girlsdrink_count * d1_price
+        + object.staff_reservation_fee + object.champagne_fee + object.singlecharge) * tax
         object.save()
         return redirect('list')
     else:
         object.girlsdrink_confirmation == 'no' and object.tax_confirmation == 'no'
-        object.bill = (object.tablecharge * object.custermer + object.girlsdrink_count * 0 
+        object.bill = (object.tablecharge * object.custermer + object.girlsdrink_count * d1_price
         + object.staff_reservation_fee + object.champagne_fee + object.singlecharge)
         object.save()
         return redirect('list')
-    
+
+tax2 = 0.1
 def taxfunc(request, pk):
     object = SalesModel.objects.get(pk=pk)
     if object.girlsdrink_confirmation == 'yes' and object.tax_confirmation == 'yes':
-        object.tax_total = (object.tablecharge * object.custermer + object.girlsdrink_count * 1000 
-        + object.staff_reservation_fee + object.champagne_fee + object.singlecharge) * 0.1
+        object.tax_total = (object.tablecharge * object.custermer + object.girlsdrink_count * d_price 
+        + object.staff_reservation_fee + object.champagne_fee + object.singlecharge) * tax2
         object.save()
         return redirect('list')
     elif object.girlsdrink_confirmation == 'yes' and object.tax_confirmation == 'no':
@@ -60,7 +63,8 @@ def taxfunc(request, pk):
         object.save()
         return redirect('list')
     elif object.girlsdrink_confirmation == 'no' and object.tax_confirmation == 'yes':
-        object.tax_total = (object.tablecharge * object.custermer + object.girlsdrink_count * 0 + object.staff_reservation_fee + object.champagne_fee + object.singlecharge) * 0.1
+        object.tax_total = (object.tablecharge * object.custermer + object.girlsdrink_count * d1_price 
+        + object.staff_reservation_fee + object.champagne_fee + object.singlecharge) * tax2
         object.save()
         return redirect('list')
     else:

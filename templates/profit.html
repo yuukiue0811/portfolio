@@ -2,6 +2,7 @@
 
 
 {% block content %} 
+{% if user.is_authenticated %}
 <div class="container">
 <form method="get" action="output.html" oninput="result.value = Number(a.value) - Number(b.value) - Number(c.value) - Number(d.value);">
 
@@ -17,6 +18,9 @@
     <h3>それぞれの項目を入力してください</h3>
 </form>
 </div>
+{% else %}
+<a href="{% url 'login'  %}">ログインしてください</a>
+{% endif %}
 {% endblock content %}
     
     

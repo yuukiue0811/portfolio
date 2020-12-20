@@ -2,9 +2,10 @@
 
 {% block content %}
 <div class="container">
+    <p><a href="{% url 'boys_create'  %}" class="btn btn-info" role="button" aria-pressed="true">ボーイ給料入力</a></p>
     {% for item in obj %}
     {% if forloop.last %}
-       <p>ボーイの給料合計 → {{ item.salary_total }}</p><br>
+       <p>ボーイの給料合計 → {{ item.salary_total }}</p>
     {% endif %}
     {% endfor %}
     {% for item in model %} 

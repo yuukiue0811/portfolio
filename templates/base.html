@@ -27,28 +27,16 @@
         <div class="collapse navbar-collapse" id="Navber">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'list' %}">売上一覧</a>
+                    <a class="nav-link" href="{% url 'list' %}">売上</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'create' %}">売上入力</a>
+                    <a class="nav-link" href="{% url 'boys_list' %}">ボーイ給料</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'boys_list' %}">ボーイ給料一覧</a>
+                    <a class="nav-link" href="{% url 'girls_list' %}">キャスト給料</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'boys_create' %}">ボーイ給料入力</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'girls_list' %}">キャスト給料一覧</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'girls_create' %}">キャスト給料入力</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'shopping_list' %}">出費一覧</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'shopping_create' %}">出費入力</a>
+                    <a class="nav-link" href="{% url 'shopping_list' %}">出費</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'profit' %}">利益</a>
