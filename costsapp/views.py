@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 @login_required(login_url='/login/')
 def BoysList(request):
-    model = BoycostsModel.objects.all().order_by("-date")
+    model = BoycostsModel.objects.all()
 
     obj = BoycostsModel.objects.filter(pk__gte=1)
     constant = 0
@@ -47,7 +47,7 @@ def boys_salary(request, pk):
 
 @login_required(login_url='/login/')
 def GirlsList(request):
-    model = GirlscostsModel.objects.all().order_by("-date")
+    model = GirlscostsModel.objects.all()
 
     obj = GirlscostsModel.objects.filter(pk__gte=1)
     constant = 0
@@ -86,7 +86,7 @@ def girls_salary(request, pk):
 
 @login_required(login_url='/login/')
 def ShoppingList(request):
-    model = ShoppingcostsModel.objects.all().order_by("-date")
+    model = ShoppingcostsModel.objects.all()
 
     obj = ShoppingcostsModel.objects.filter(pk__gte=1)
     constant = 0
