@@ -12,10 +12,10 @@ def BoysList(request):
     model = BoycostsModel.objects.all()
 
     obj = BoycostsModel.objects.filter(pk__gte=1)
-    b = 0
+    constant = 0
     for item in obj:
-        b += item.salary
-        item.salary_total = b
+        constant += item.salary
+        item.salary_total = constant
     return render(request, 'boys_list.html', {'model' : model, 'obj' : obj})
 
 class BoysCreate(CreateView):
@@ -50,10 +50,10 @@ def GirlsList(request):
     model = GirlscostsModel.objects.all()
 
     obj = GirlscostsModel.objects.filter(pk__gte=1)
-    b = 0
+    constant = 0
     for item in obj:
-        b += item.salary
-        item.salary_total = b
+        constant += item.salary
+        item.salary_total = constant
     return render(request, 'girls_list.html', {'model' : model, 'obj' : obj})
 
 class GirlsCreate(CreateView):
@@ -89,10 +89,10 @@ def ShoppingList(request):
     model = ShoppingcostsModel.objects.all()
 
     obj = ShoppingcostsModel.objects.filter(pk__gte=1)
-    b = 0
+    constant = 0
     for item in obj:
-        b += item.shopping_total
-        item.shopping_total = b
+        constant += item.shopping_total
+        item.shopping_total = constant
     return render(request, 'shopping_list.html', {'model' : model, 'obj' : obj})
 
 class ShoppingCreate(CreateView):

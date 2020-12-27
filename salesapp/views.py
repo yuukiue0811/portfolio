@@ -12,10 +12,10 @@ def SaleList(request):
     model = SalesModel.objects.all().order_by("-date")
 
     obj = SalesModel.objects.filter(pk__gte=1)
-    a = 0
+    constant = 0
     for item in obj:
-        a += item.bill
-        item.sales_total = a
+        constant += item.bill
+        item.sales_total = constant
     return render(request, 'list.html', {'model' : model, 'obj' : obj})
 
 
