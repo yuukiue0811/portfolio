@@ -18,5 +18,11 @@
         <a href="{% url 'update' item.pk %}" class="btn btn-info" role="button" aria-pressed="true">編集画面へ</a>
     </div>
     {% endfor %}
+    
+    {% for item in object %}
+    {{item.bill}}
+        
+    {% endfor %}
+        
 {% endblock content %}
 </div>

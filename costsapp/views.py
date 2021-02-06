@@ -6,6 +6,66 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.contrib.auth.models import User
+from salesapp.models import SalesModel
+
+def profit_list(request):
+    obj1 = SalesModel.objects.filter(pk__gte=1)
+    constant = 0
+    for item in obj1:
+        constant += item.bill
+        item.sales_total = constant
+    
+    obj2 = BoycostsModel.objects.filter(pk__gte=1)
+    constant1 = 0
+    for item in obj2:
+        constant1 += item.salary
+        item.salary_total = constant1
+
+    obj3 = GirlscostsModel.objects.filter(pk__gte=1)
+    constant2 = 0
+    for item in obj3:
+        constant2 += item.salary
+        item.salary_total = constant2
+
+    obj4 = ShoppingcostsModel.objects.filter(pk__gte=1)
+    constant3 = 0
+    for item in obj4:
+        constant3 += item.shopping_total
+        item.shopping_total = constant3
+
+    profit = constant - constant1 - constant2 - constant3
+    
+    model = ProfitModel.objects.all()
+
+    return render(request, 'profit_list.html', {'obj1' : obj1, 'obj2': obj2, 'obj3' : obj3, 'obj4' : obj4, 'model' : model })
+
+
+class ProfitCreate(CreateView):
+    template_name = 'profit_create.html'
+    model = ProfitModel
+    fields = ('salestotal', 'boyscosts', 'girlscosts', 'costs')
+    success_url = reverse_lazy('profit_list')
+
+class ProfitDelete(DeleteView):
+    template_name = 'profit_delete.html'
+    model = ProfitModel
+    success_url = reverse_lazy('profit_list')
+
+class ProfitUpdate(UpdateView):
+    template_name = 'profit_update.html'
+    model = ProfitModel
+    fields = ('salestotal', 'boyscosts', 'girlscosts', 'costs')
+    success_url = reverse_lazy('profit_list')
+
+def profit_detail(request, pk):
+    object = ProfitModel.objects.get(pk=pk)
+    return render(request, 'profit_detail.html', {'object' : object })
+
+def profit_calc(self, pk):
+    object = ProfitModel.objects.get(pk=pk)
+    object.profit = object.salestotal - object.boyscosts - object.girlscosts - object.costs
+    object.save()
+    return redirect('profit_list')
 
 @login_required(login_url='/login/')
 def BoysList(request):
@@ -122,9 +182,7 @@ def shopping_costs(request, pk):
     object.save()
     return redirect('shopping_list')
 
-def profit(request):
-    obj = ProfitModel.objects.all()
-    return render(request, 'profit.html', {'obj' : obj })
+
 
 def signupfunc(request):
     if request.method == 'POST':

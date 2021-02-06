@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block content %} 
+{% if user.is_authenticated %}
+<div class="container">
+    {% for item in obj1 %}
+    {% if forloop.last %}
+        <p>売上合計 →{{ item.sales_total }}</p>
+    {% endif %}
+    {% endfor %}
+    
+    {% for i in obj2 %}
+    {% if forloop.last %}
+        <p>ボーイの給料合計 →{{ i.salary_total }}</p>
+    {% endif %}
+    {% endfor %}
+    
+    {% for a in obj3 %}
+    {% if forloop.last %}
+        <p>キャストの給料合計 → {{ a.salary_total }}</p>
+    {% endif %}
+    {% endfor %}
+
+    {% for item in obj4 %}
+    {% if forloop.last %}
+      <p>買い物の出費合計 → {{ item.shopping_total }}</p>
+    {% endif %}
+    {% endfor %}
+        <p><a href="{% url 'profit_create'  %}" class="btn btn-info" role="button" aria-pressed="true">今日の利益</a></p>
+        {% for item in model %} 
+        <div class="alert alert-success" role="alert">
+            <p>利益 : <a href="{% url 'profit_calc' item.pk %}">{{ item.profit }}</a></p>
+            <p>今日の日付 : {{ item.date }}</p>
+            <a href="{% url 'profit_detail' item.pk %}" class="btn btn-primary" role="button" aria-pressed="true">詳細画面へ</a>
+            <a href="{% url 'profit_delete' item.pk %}" class="btn btn-success" role="button" aria-pressed="true">削除画面へ</a>
+            <a href="{% url 'profit_update' item.pk %}" class="btn btn-info" role="button" aria-pressed="true">編集画面へ</a>
+        </div>
+        {% endfor %}
+    </div>
+    
+{% else %}
+<a href="{% url 'login'  %}">ログインしてください</a>
+{% endif %}
+{% endblock content %}
+
+    
+    
+    
+   
+
+    

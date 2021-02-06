@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 CHOICES = (('yes', 'はい'), ('no', 'いいえ'))
 
 
@@ -38,8 +38,9 @@ class ShoppingcostsModel(models.Model):
     
     
 class ProfitModel(models.Model):
-    salestotal = models.IntegerField(null=True, blank=True)
-    boyscosts = models.IntegerField(null=True, blank=True)
-    girlscosts = models.IntegerField(null=True, blank=True)
-    costs = models.IntegerField(null=True, blank=True)
+    salestotal = models.IntegerField('今日の売上', null=True, blank=True)
+    boyscosts = models.IntegerField('ボーイの給料合計', null=True, blank=True)
+    girlscosts = models.IntegerField('キャストの給料合計', null=True, blank=True)
+    costs = models.IntegerField('買い物代などの他費用', null=True, blank=True)
     profit = models.IntegerField(null=True, blank=True)
+    date = models.DateTimeField(default=timezone.now)

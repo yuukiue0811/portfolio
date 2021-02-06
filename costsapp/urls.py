@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import (BoysList, BoysCreate, BoysDelete, BoysUpdate, boys_salary, boys_detail,
 GirlsList, GirlsCreate, GirlsDelete, GirlsUpdate, girls_salary, girls_detail,
-ShoppingList, ShoppingCreate, ShoppingDelete, ShoppingUpdate, shopping_costs, shopping_detail, profit, signupfunc, loginfunc, logoutfunc)
+ShoppingList, ShoppingCreate, ShoppingDelete, ShoppingUpdate, shopping_costs, shopping_detail, signupfunc, loginfunc, logoutfunc,
+profit_list, ProfitCreate, ProfitDelete, ProfitUpdate, profit_detail, profit_calc)
 urlpatterns = [
     path('boyslist/', BoysList, name='boys_list'),
     path('boyscreate/', BoysCreate.as_view(), name='boys_create'),
@@ -18,12 +19,16 @@ urlpatterns = [
     path('shoppinglist/', ShoppingList, name='shopping_list'),
     path('shoppingcreate/', ShoppingCreate.as_view(), name='shopping_create'),
     path('shoppingdelete/<int:pk>', ShoppingDelete.as_view(), name='shopping_delete'),
-    path('shoppingupdate<int:pk>/', ShoppingUpdate.as_view(), name='shopping_update'),
+    path('shoppingupdate/<int:pk>', ShoppingUpdate.as_view(), name='shopping_update'),
     path('shoppingcost/<int:pk>', shopping_costs, name='shopping_costs'),
     path('shoppingdetail/<int:pk>', shopping_detail, name='shopping_detail'),
-    path('profit/', profit, name='profit'),
     path('signup/', signupfunc, name='signup'),
     path('login/', loginfunc, name='login'),
     path('logout/', logoutfunc, name='logout'),
-
+    path('profit_list/', profit_list, name='profit_list'),
+    path('profit_calc/<int:pk>', profit_calc, name='profit_calc'),
+    path('profit_create/', ProfitCreate.as_view(), name='profit_create'),
+    path('profit_delete/<int:pk>', ProfitDelete.as_view(), name='profit_delete'),
+    path('profit_update/<int:pk>', ProfitUpdate.as_view(), name='profit_update'),
+    path('profit_detail/<int:pk>', profit_detail, name='profit_detail')
 ]

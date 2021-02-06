@@ -16,6 +16,7 @@ def SaleList(request):
     for item in obj:
         constant += item.bill
         item.sales_total = constant
+        print(item.sales_total)
     return render(request, 'list.html', {'model' : model, 'obj' : obj})
 
 
