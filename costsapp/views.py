@@ -33,17 +33,20 @@ def profit_list(request):
         constant3 += item.shopping_total
         item.shopping_total = constant3
 
-    profit = constant - constant1 - constant2 - constant3
-    
-    model = ProfitModel.objects.all()
-
-    return render(request, 'profit_list.html', {'obj1' : obj1, 'obj2': obj2, 'obj3' : obj3, 'obj4' : obj4, 'model' : model })
+    object = ProfitModel.objects.all()
+    for item in object:
+        item.salestotal = constant
+        item.boyscosts = constant1
+        item.girlscosts = constant2
+        item.costs = constant3
+        item.profit = item.salestotal - item.boyscosts - item.girlscosts - item.costs
+    return render(request, 'profit_list.html', {'obj1' : obj1, 'obj2': obj2, 'obj3' : obj3, 'obj4' : obj4, 'object' : object })
 
 
 class ProfitCreate(CreateView):
     template_name = 'profit_create.html'
     model = ProfitModel
-    fields = ('salestotal', 'boyscosts', 'girlscosts', 'costs')
+    fields = ('profit',)
     success_url = reverse_lazy('profit_list')
 
 class ProfitDelete(DeleteView):
@@ -69,7 +72,7 @@ def profit_calc(self, pk):
 
 @login_required(login_url='/login/')
 def BoysList(request):
-    model = BoycostsModel.objects.all()
+    model = BoycostsModel.objects.all().order_by("-date")
 
     obj = BoycostsModel.objects.filter(pk__gte=1)
     constant = 0
@@ -107,7 +110,7 @@ def boys_salary(request, pk):
 
 @login_required(login_url='/login/')
 def GirlsList(request):
-    model = GirlscostsModel.objects.all()
+    model = GirlscostsModel.objects.all().order_by("-date")
 
     obj = GirlscostsModel.objects.filter(pk__gte=1)
     constant = 0
@@ -146,7 +149,7 @@ def girls_salary(request, pk):
 
 @login_required(login_url='/login/')
 def ShoppingList(request):
-    model = ShoppingcostsModel.objects.all()
+    model = ShoppingcostsModel.objects.all().order_by("-date")
 
     obj = ShoppingcostsModel.objects.filter(pk__gte=1)
     constant = 0

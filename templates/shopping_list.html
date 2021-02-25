@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
-
+{% load humanize %}
 {% block content %}
 <div class="container">
-    <p><a href="{% url 'shopping_create'  %}" class="btn btn-info" role="button" aria-pressed="true">出費入力</a></p>
+    <p><a href="{% url 'shopping_create'  %}" class="btn btn-success" role="button" aria-pressed="true">出費入力</a></p>
     {% for item in obj %}
     {% if forloop.last %}
-      <p>買い物の出費合計 → {{ item.shopping_total }}</p>
+      <p>買い物の出費合計 → {{ item.shopping_total|intcomma }}</p>
     {% endif %}
     {% endfor %}
     {% for item in model %} 
-    <div class="alert alert-success" role="alert">
-        <p>出費 : <a href="{% url 'shopping_costs' item.pk %}">{{ item.shopping_total }}</a></p>
+    <div class="alert alert-info" role="alert">
+        <p><a href="{% url 'shopping_costs' item.pk %}"class="btn btn-info" role="button" aria-pressed="true">出費 : {{ item.shopping_total|intcomma }}</a></p>
         <a href="{% url 'shopping_detail' item.pk %}" class="btn btn-primary" role="button" aria-pressed="true">詳細画面へ</a>
-        <a href="{% url 'shopping_delete' item.pk %}" class="btn btn-success" role="button" aria-pressed="true">削除画面へ</a>
-        <a href="{% url 'shopping_update' item.pk %}" class="btn btn-info" role="button" aria-pressed="true">編集画面へ</a>
+        <a href="{% url 'shopping_delete' item.pk %}" class="btn btn-danger" role="button" aria-pressed="true">削除画面へ</a>
+        <a href="{% url 'shopping_update' item.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">編集画面へ</a>
     </div>
     {% endfor %}
 </div>

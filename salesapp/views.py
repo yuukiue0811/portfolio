@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import SalesModel
-from django.views.generic import CreateView, TemplateView, DeleteView, UpdateView, ListView
+from django.views.generic import CreateView, TemplateView, DeleteView, UpdateView, ListView, DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
@@ -16,13 +16,17 @@ def SaleList(request):
     for item in obj:
         constant += item.bill
         item.sales_total = constant
-        print(item.sales_total)
     return render(request, 'list.html', {'model' : model, 'obj' : obj})
 
 
-def detailfunc(request, pk):
-    object = SalesModel.objects.get(pk=pk)
-    return render(request, 'detail.html', {'object' : object })
+class SalesDetail(DetailView):
+    template_name = 'detail.html'
+    model = SalesModel
+    fields = ('tablenumber', 'girlsdrink_confirmation', 'tax_confirmation', 'singlecharge', 'tablecharge', 'custermer', 'girlsdrink_count', \
+        'staff_reservation_fee', 'champagne_fee')
+    success_url = reverse_lazy('list')
+
+
 
 d_price = 1000
 d1_price = 0
@@ -50,6 +54,10 @@ def billfunc(request, pk):
         + object.staff_reservation_fee + object.champagne_fee + object.singlecharge)
         object.save()
         return redirect('list')
+
+
+
+
 
 tax2 = 0.1
 def taxfunc(request, pk):

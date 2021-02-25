@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
-
+{% load humanize %}
 {% block content %}
 <div class="container">
-    <a href="{% url 'girls_create'  %}" class="btn btn-info" role="button" aria-pressed="true">キャスト給料入力</a>
+    <p><a href="{% url 'girls_create'  %}" class="btn btn-success role="button" aria-pressed="true">給料入力</a></p>
     {% for item in obj %}
     {% if forloop.last %}
-    <p>キャストの給料合計 → {{ item.salary_total }}</p>
+    <p>キャストの給料合計 → {{ item.salary_total|intcomma}}</p>
     {% endif %}
     {% endfor %}
     {% for item in model %} 
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-info" role="alert">
         <p>名前 : {{ item.name }}</p>
-        <p>給料 : <a href="{% url 'girls_salary' item.pk %}">{{ item.salary }}</a></p>
+        <p><a href="{% url 'girls_salary' item.pk %}" class="btn btn-info" role="button" aria-pressed="true">給料 : {{ item.salary|intcomma }}</a></p>
+            
         <a href="{% url 'girls_detail' item.pk %}" class="btn btn-primary" role="button" aria-pressed="true">詳細画面へ</a>
-        <a href="{% url 'girls_delete' item.pk %}" class="btn btn-success" role="button" aria-pressed="true">削除画面へ</a>
-        <a href="{% url 'girls_update' item.pk %}" class="btn btn-info" role="button" aria-pressed="true">編集画面へ</a>
+        <a href="{% url 'girls_delete' item.pk %}" class="btn btn-danger" role="button" aria-pressed="true">削除画面へ</a>
+        <a href="{% url 'girls_update' item.pk %}" class="btn btn-secondary" role="button" aria-pressed="true">編集画面へ</a>
     </div>
     {% endfor %}
 </div>
