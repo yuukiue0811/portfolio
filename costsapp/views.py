@@ -40,6 +40,10 @@ def profit_list(request):
         item.girlscosts = constant2
         item.costs = constant3
         item.profit = item.salestotal - item.boyscosts - item.girlscosts - item.costs
+        if item.profit < 0:
+            item.people = item.profit / -4000
+        else:
+            item.people = 0
     return render(request, 'profit_list.html', {'obj1' : obj1, 'obj2': obj2, 'obj3' : obj3, 'obj4' : obj4, 'object' : object })
 
 

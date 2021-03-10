@@ -43,3 +43,4 @@ class ProfitModel(models.Model):
     costs = models.IntegerField('買い物代などの他費用', null=True, blank=True)
     profit = models.IntegerField('今日の利益',null=True, blank=True)
     date = models.DateTimeField(default=timezone.now)
+    people = models.IntegerField(null=True, blank=True)

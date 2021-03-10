@@ -5,7 +5,7 @@
     <p><a href="{% url 'boys_create'  %}" class="btn btn-success" role="button" aria-pressed="true">給料入力</a></p>
     {% for item in obj %}
     {% if forloop.last %}
-       <p>ボーイの給料合計 → {{ item.salary_total|intcomma }}</p>
+       <p>ボーイの給料合計 → {{ item.salary_total|intcomma }}円</p>
     {% endif %}
     {% endfor %}
     {% for item in model %} 

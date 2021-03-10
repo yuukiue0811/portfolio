@@ -8,30 +8,34 @@
 
         {% for item in obj1 %}
         {% if forloop.last %}
-            <p>売上合計 →{{ item.sales_total|intcomma }}</p>
+            <p>売上合計 →{{ item.sales_total|intcomma }}円</p>
         {% endif %}
         {% endfor %}
     
         {% for i in obj2 %}
         {% if forloop.last %}
-            <p>ボーイの給料合計 →{{ i.salary_total|intcomma }}</p>
+            <p>ボーイの給料合計 →{{ i.salary_total|intcomma }}円</p>
         {% endif %}
         {% endfor %}
     
         {% for a in obj3 %}
         {% if forloop.last %}
-            <p>キャストの給料合計 → {{ a.salary_total|intcomma }}</p>
+            <p>キャストの給料合計 → {{ a.salary_total|intcomma }}円</p>
         {% endif %}
         {% endfor %}
 
         {% for item in obj4 %}
         {% if forloop.last %}
-        <p>買い物の出費合計 → {{ item.shopping_total|intcomma }}</p>
+        <p>買い物の出費合計 → {{ item.shopping_total|intcomma }}円</p>
         {% endif %}
         {% endfor %}
 
         {% for item in object %}
-            <p>今日の利益 → {{ item.profit|intcomma}}</p>
+            <p>今日の利益 → {{ item.profit|intcomma}}<円/p>
+        {% endfor %}
+
+        {% for item in object %}
+            <p>残りの必要人数 → {{ item.people}}人</p>
         {% endfor %}
         
     </div>
